@@ -9,7 +9,7 @@ npm install
 cp .env.example .env
 ```
 
-Set `XAI_API_KEY` in `.env`.
+Set `GEMINI_API_KEY` in `.env`. `GEMINI_MODEL` defaults to `gemini-2.0-flash`.
 
 ## Run
 
@@ -43,7 +43,7 @@ curl -X POST http://localhost:8000/analyze-ticket \
 
 ## AI/Model Usage
 
-The service uses Grok 3 Mini through the xAI API, which is OpenAI-compatible, via the `openai` npm package. The system prompt handles classification, evidence reasoning, routing, and safety guardrails. `response_format: json_object` enforces clean JSON output.
+The service uses Gemini through the Gemini API. The system prompt handles classification, evidence reasoning, routing, and safety guardrails. `responseMimeType: "application/json"` requests clean JSON output.
 
 ## Safety Logic
 
@@ -53,8 +53,8 @@ The API also validates the returned JSON shape, constrains enum fields to the re
 
 ## Known Limitations
 
-The service relies on xAI Grok API availability. It falls back to a safe default response on API failure. Final operational decisions still require the platform's internal policies and support workflows.
+The service relies on Gemini API availability. It falls back to a local evidence-based investigation on API failure. Final operational decisions still require the platform's internal policies and support workflows.
 
 ## MODELS
 
-`grok-3-mini` via xAI API (`https://api.x.ai/v1`) is chosen for its OpenAI-compatible interface, JSON mode support, strong instruction-following, Bangla/English multilingual support, and fast response times within the 30-second timeout.
+`gemini-2.0-flash` is the default model because it is fast, supports JSON responses, and is suitable for the hackathon demo workflow. Override with `GEMINI_MODEL` if needed.

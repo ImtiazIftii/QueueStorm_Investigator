@@ -8,7 +8,7 @@ cp .env.example .env
 npm start
 ```
 
-Set `XAI_API_KEY` before calling `POST /analyze-ticket`.
+Set `GEMINI_API_KEY` before calling `POST /analyze-ticket`.
 
 ## Health Check
 
