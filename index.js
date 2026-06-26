@@ -1,5 +1,6 @@
 import "dotenv/config";
 import express from "express";
+import { fileURLToPath } from "url";
 
 const PORT = process.env.PORT || 8000;
 const REQUEST_TIMEOUT_MS = 28_000;
@@ -146,9 +147,15 @@ app.use((_err, _req, res, _next) => {
   res.status(500).json({ error: "Internal server error" });
 });
 
-app.listen(PORT, () => {
-  console.log(`QueueStorm Investigator listening on port ${PORT}`);
-});
+const isDirectRun = process.argv[1] === fileURLToPath(import.meta.url);
+
+if (isDirectRun) {
+  app.listen(PORT, () => {
+    console.log(`QueueStorm Investigator listening on port ${PORT}`);
+  });
+}
+
+export default app;
 
 function validateTicketRequest(body) {
   if (!body || typeof body !== "object" || Array.isArray(body)) {
