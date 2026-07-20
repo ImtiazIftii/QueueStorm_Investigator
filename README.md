@@ -1,3 +1,6 @@
+###HomePage
+![HomePage](screenshots/qStorm.jpeg)
+
 # QueueStorm Investigator
 
 QueueStorm Investigator is an Express.js REST API that acts as an AI-powered support copilot for a digital finance platform. It receives complaint tickets and transaction history, investigates the evidence, and returns a structured JSON response for support agents.
